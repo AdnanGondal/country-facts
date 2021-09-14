@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./CountriesSideBar.css";
 
 function CountriesSideBar(props) {
-  const selected = parseInt(props.selected);
+  const selected = props.selected;
+  console.log(selected);
 
   const handleClick = (evt) => {
     const id = evt.target.id;
@@ -16,17 +17,17 @@ function CountriesSideBar(props) {
       <ul className="nav">
         <li
           onClick={handleClick}
-          className={`nav-elem ${selected === 0 ? "selected" : null}`}
+          className={`nav-elem ${selected === "gb" ? "selected" : null}`}
         >
-          <button id={0} value="United Kingdom">
+          <button id={"gb"} value="United Kingdom">
             United Kingdom
           </button>
         </li>
         <li
           onClick={handleClick}
-          className={`nav-elem ${selected === 1 ? "selected" : null}`}
+          className={`nav-elem ${selected === "de" ? "selected" : null}`}
         >
-          <button id={1} value="Germany">
+          <button id={"de"} value="Germany">
             Germany
           </button>
         </li>

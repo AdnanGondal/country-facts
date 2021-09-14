@@ -4,21 +4,21 @@ import "./App.css";
 import CountriesSideBar from "./components/CountriesSideBar/CountriesSideBar.js";
 import CountryMain from "./components/CountryMain/CountryMain";
 function App() {
-  const [selected, setSelected] = useState(0);
   const [country, setCountry] = useState("United Kingdom");
+  const [code, setCode] = useState("gb");
 
   function handleCountryChange(country, id) {
-    setSelected(id);
     setCountry(country);
+    setCode(id);
   }
 
   return (
     <div className="App">
       <CountriesSideBar
         handleCountryChange={handleCountryChange}
-        selected={selected}
+        selected={code}
       />
-      <CountryMain country={country} countryID={"gb"} />
+      <CountryMain country={country} code={code} />
     </div>
   );
 }

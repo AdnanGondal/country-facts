@@ -8,15 +8,22 @@ function CountryMain(props) {
     return res.json();
   }
 
+  async function fetchMyAPI(code) {
+    let url = `https://restcountries.eu/rest/v2/alpha/${code}?fields=name;capital;population;flag`;
+    const data = await myFetch(url);
+    setData(data);
+  }
+
+  // Initial setup
   useEffect(() => {
-    async function fetchMyAPI() {
-      let url =
-        "https://restcountries.eu/rest/v2/alpha/gb?fields=name;capital;population;flag";
-      const data = await myFetch(url);
-      setData(data);
-    }
-    fetchMyAPI();
+    fetchMyAPI("gb");
   }, []);
+
+  // How it changes to different country inputs
+
+  useEffect(() => {
+    fetchMyAPI(props.code);
+  }, [props.code]);
 
   console.log(data);
 
