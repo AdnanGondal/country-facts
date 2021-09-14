@@ -21,10 +21,16 @@
   border: none;
   width: 100%;
   border-radius: 5px;
+  font-size: large;
 }
 
 /* Change the link color on hover */
 .nav-elem button:hover {
+  background-color: #e95c5c;
+  color: white;
+}
+
+.selected button {
   background-color: #e95c5c;
   color: white;
 }
