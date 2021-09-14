@@ -25,8 +25,6 @@ function CountryMain(props) {
     fetchMyAPI(props.code);
   }, [props.code]);
 
-  console.log(data);
-
   return (
     <div className="country-container">
       <h2>{props.country}</h2>
