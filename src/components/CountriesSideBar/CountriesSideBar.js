@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import "./CountriesSideBar.css";
 
-function CountriesSideBar() {
-  const [selected, setSelected] = useState(0);
+function CountriesSideBar(props) {
+  const selected = parseInt(props.selected);
 
   const handleClick = (evt) => {
     const id = evt.target.id;
     const name = evt.target.value;
-    console.log(name);
-    setSelected(parseInt(id));
+    props.handleCountryChange(name, id);
   };
 
   return (

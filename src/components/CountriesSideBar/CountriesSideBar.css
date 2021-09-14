@@ -2,6 +2,8 @@
   border: 3px solid grey;
   padding: 10px 50px;
   border-radius: 10px;
+  flex: 1;
+  margin: 10px;
 }
 
 .nav {
