@@ -15,10 +15,17 @@ function App() {
 
   useEffect(() => {
     async function setCountryData() {
-      let url = `https://restcountries.eu/rest/v2/all?fields=name;alpha2Code`;
-      const res = await myFetch(url);
-      const countryArray = randomNine(res);
-      setCountries(countryArray);
+      try {
+        let url = `https://restcountries.eu/rest/v2/all?fields=name;alpha2Code`;
+        const res = await myFetch(url);
+        const countryArray = randomNine(res);
+        setCountries(countryArray);
+      } catch (error) {
+        const errorArray = [
+          { name: "Error Loading Countries", alpha2code: "Er" },
+        ];
+        setCountries(errorArray);
+      }
     }
 
     setCountryData();

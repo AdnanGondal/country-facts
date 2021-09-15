@@ -9,9 +9,18 @@ function CountryMain(props) {
   }
 
   async function fetchMyAPI(code) {
-    let url = `https://restcountries.eu/rest/v2/alpha/${code}?fields=name;capital;population;flag`;
-    const data = await myFetch(url);
-    setData(data);
+    try {
+      let url = `https://restcountries.eu/rest/v2/alpha/${code}?fields=name;capital;population;flag`;
+      const data = await myFetch(url);
+      setData(data);
+    } catch (error) {
+      const errorObject = {
+        population: "Network Error",
+        capital: "Network Error",
+        flag: "https://uploads.sitepoint.com/wp-content/uploads/2015/12/1450973046wordpress-errors.png",
+      };
+      setData(errorObject);
+    }
   }
 
   // Initial setup
@@ -35,7 +44,11 @@ function CountryMain(props) {
         <img
           className="flag-img"
           alt="flag"
-          src={`${data ? data.flag : "Error Loading"}`}
+          src={`${
+            data
+              ? data.flag
+              : "https://uploads.sitepoint.com/wp-content/uploads/2015/12/1450973046wordpress-errors.png"
+          }`}
         />
       </div>
     </div>
