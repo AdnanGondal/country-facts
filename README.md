@@ -5,7 +5,7 @@
 
 ## About
 
-This is an application that shows 9 random countries and the user is able to toggle between them to get Facts about one of these countries. 
+This is an application that shows 9 random countries and the user is able to toggle between them to get facts about one of these countries. 
 
 Concepts utitlised in this project include:
 
