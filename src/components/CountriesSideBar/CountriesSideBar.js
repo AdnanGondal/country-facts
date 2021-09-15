@@ -1,27 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./CountriesSideBar.css";
 
 function CountriesSideBar(props) {
   const selected = props.selected;
-  console.log(selected);
 
-  const [data, setData] = useState(null);
   //const [elems, setElems] = useState(null);
-
-  async function myFetch(url) {
-    let res = await fetch(url);
-    return res.json();
-  }
-
-  useEffect(() => {
-    async function fetchMyAPI() {
-      let url = `https://restcountries.eu/rest/v2/all?fields=name;alpha2Code`;
-      const data = await myFetch(url);
-      setData(data);
-    }
-
-    fetchMyAPI();
-  }, []);
 
   const handleClick = (evt) => {
     const id = evt.target.id;
@@ -29,34 +12,25 @@ function CountriesSideBar(props) {
     props.handleCountryChange(name, id);
   };
 
-  const randomNine = (arr) => {
-    // note the initial array is being changed
-    const shuffled = arr.sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, 9);
-  };
+  const countriesArray = props.countries;
 
-  const getElems = () => {
-    const array = randomNine(data);
-    console.log(array);
-    return array.map((item) => {
+  const elements =
+    countriesArray &&
+    countriesArray.map((country, i) => {
+      const code = country.alpha2Code;
+      const name = country.name;
       return (
         <li
+          key={i}
           onClick={handleClick}
-          className={`nav-elem ${
-            selected === item.alpha2Code ? "selected" : null
-          }`}
+          className={`nav-elem ${selected === code ? "selected" : null}`}
         >
-          <button id={item.alpha2Code} value={item.name}>
-            {item.name}
+          <button id={code} value={name}>
+            {name}
           </button>
         </li>
       );
     });
-  };
-
-  const elems = data && getElems();
-  const exID = data && data[0].alpha2Code;
-  const exName = data && data[0].name;
 
   return (
     <div className="sidebar">
@@ -70,15 +44,7 @@ function CountriesSideBar(props) {
             United Kingdom
           </button>
         </li>
-        <li
-          onClick={handleClick}
-          className={`nav-elem ${selected === exID ? "selected" : null}`}
-        >
-          <button id={exID} value={exName}>
-            {exName}
-          </button>
-        </li>
-        {elems}
+        {elements}
       </ul>
     </div>
   );
